@@ -1,0 +1,16 @@
+title: Shubham's Digital Garden🪴
+author: Shubham
+email: shubham.null@gmail.com
+description: >-
+  Shubham's Digital Garden.
+baseurl: "/cell"
+url: "https://prophet1906.github.io"
+twitter_username: shubham_null
+github_username:  prophet1906
+theme: minima
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
