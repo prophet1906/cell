@@ -3,8 +3,8 @@ author: Shubham
 email: shubham.null@gmail.com
 description: >-
   Shubham's Digital Garden.
-baseurl: "/cell"
-url: "https://prophet1906.github.io"
+baseurl: ""
+url: "https://reflection.cf"
 twitter_username: shubham_null
 github_username:  prophet1906
 theme: minima
