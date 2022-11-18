@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Back of the Envelope Estimation | Shubham’s Digital Garden🪴</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Back of the Envelope Estimation" />
+<meta name="author" content="Shubham" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Creating design for a system isn’t helpful unless you can justify why your design is better than others. After creating a design, there will be questions on weather the design fulfills the specified requirements." />
+<meta property="og:description" content="Creating design for a system isn’t helpful unless you can justify why your design is better than others. After creating a design, there will be questions on weather the design fulfills the specified requirements." />
+<link rel="canonical" href="https://reflection.cf/2022/06/19/system-design-estimation.html" />
+<meta property="og:url" content="https://reflection.cf/2022/06/19/system-design-estimation.html" />
+<meta property="og:site_name" content="Shubham’s Digital Garden🪴" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Back of the Envelope Estimation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Shubham"},"dateModified":"2022-06-19T00:00:00+00:00","datePublished":"2022-06-19T00:00:00+00:00","description":"Creating design for a system isn’t helpful unless you can justify why your design is better than others. After creating a design, there will be questions on weather the design fulfills the specified requirements.","headline":"Back of the Envelope Estimation","mainEntityOfPage":{"@type":"WebPage","@id":"https://reflection.cf/2022/06/19/system-design-estimation.html"},"url":"https://reflection.cf/2022/06/19/system-design-estimation.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://reflection.cf/feed.xml" title="Shubham's Digital Garden🪴" /><!-- for mathjax support -->
+  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shubham&#39;s Digital Garden🪴</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/tags/">tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Back of the Envelope Estimation</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-06-19T00:00:00+00:00" itemprop="datePublished">Jun 19, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Creating design for a system isn’t helpful unless you can justify why your design is better than others. After creating a design, there will be questions on weather the design fulfills the specified requirements.</p>
+
+<p>According to <strong>Jeff Dean</strong>, Google Senior Fellow, <strong>“back-of-the-envelope calculations are estimates you create using a combination of thought experiments and common performance numbers to get a good feel for which design will meet your requirements.”</strong></p>
+
+<p>A good sense of scalability basics are required to do back-of-the-envelope estimation.</p>
+
+<h2 id="power-of-two">Power of two</h2>
+<p>An <strong>ASCII</strong> character uses one byte of memory (8 bits). Given below is data volume unit using power of 2.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Power</th>
+      <th style="text-align: center">Approximate Value</th>
+      <th style="text-align: center">Full name</th>
+      <th style="text-align: center">Short name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">1 Thousand</td>
+      <td style="text-align: center">1 Kilobyte</td>
+      <td style="text-align: center">1 KB</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">1 Million</td>
+      <td style="text-align: center">1 Megabyte</td>
+      <td style="text-align: center">1 MB</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">30</td>
+      <td style="text-align: center">1 Billion</td>
+      <td style="text-align: center">1 Gigabyte</td>
+      <td style="text-align: center">1 GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">40</td>
+      <td style="text-align: center">1 Trillion</td>
+      <td style="text-align: center">1 Terabyte</td>
+      <td style="text-align: center">1 TB</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">50</td>
+      <td style="text-align: center">1 Quadrillion</td>
+      <td style="text-align: center">1 Petabyte</td>
+      <td style="text-align: center">1 PB</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="latency-numbers">Latency numbers</h2>
+<p>Latency numbers as revealed by <strong>Dr. Dean</strong> from Google in 2010 may be outdated because of faster and more powerful computers. But, these numbers should still help you to get general idea of fastness and slowness of different computer operations.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operation name</th>
+      <th style="text-align: center">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">L1 cache reference</td>
+      <td style="text-align: center">0.5 ns</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Branch mispredict</td>
+      <td style="text-align: center">5 ns</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">L2 cache reference</td>
+      <td style="text-align: center">7 ns</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Mutex lock/unlock</td>
+      <td style="text-align: center">100 ns</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Main memory reference</td>
+      <td style="text-align: center">100 ns</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Compress 1K bytes with Zippy</td>
+      <td style="text-align: center">10,000 ns = 10 μs</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Send 2K bytes over 1 Gbps network</td>
+      <td style="text-align: center">20,000 ns = 20 μs</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Read 1 MB sequentially from memory</td>
+      <td style="text-align: center">250,000 ns = 250 μs</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Round trip within the same datacenter</td>
+      <td style="text-align: center">500,000 ns = 500 μs</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Disk seek</td>
+      <td style="text-align: center">10,000,000 ns = 10 ms</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Read 1 MB sequentially from the network</td>
+      <td style="text-align: center">10,000,000 ns = 10 ms</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Read 1 MB sequentially from disk</td>
+      <td style="text-align: center">30,000,000 ns = 30 ms</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Send packet CA(California)-&gt;Netherlands-&gt;CA</td>
+      <td style="text-align: center">150,000,000 ns = 150 ms</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>ns = nanosecond</strong></p>
+
+<p><strong>μs = microsecond</strong></p>
+
+<p><strong>ms = millisecond</strong></p>
+
+<p><strong>1 ns =</strong> \(10^{-9}\) <strong>seconds</strong></p>
+
+<p><strong>1 μs =</strong> \(10^{-6}\) <strong>seconds = 1,000 ns</strong></p>
+
+<p><strong>1 ms =</strong> \(10^{-3}\) <strong>seconds = 1,000 μs = 1,000,000 ns</strong></p>
+
+<p>Some conclusions from above numbers-</p>
+<ul>
+  <li>Memory is fast but disk is slow</li>
+  <li>Avoid disk seeks if possible</li>
+  <li>Simple compression algorithms are fast</li>
+  <li>Compress data before sending it over the internet if possible</li>
+  <li>Data centers are usually in different regions, and it takes time to send data between them</li>
+</ul>
+
+<h2 id="availability-numbers">Availability numbers</h2>
+<p>A <strong>service level agreement(SLA)</strong> is commonly used as an agreement between the service provider and their customer. This agreement formally defines the level of uptime your service will deliver. The uptime is measured as percentage and it falls between <strong>99%</strong> and <strong>100%</strong> for most services. Uptime is typically measured in nines, more nines is better. Number of nines correlate to the expected system downtime.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Availability %</th>
+      <th style="text-align: center">Downtime per day</th>
+      <th style="text-align: center">Downtime per year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">99%</td>
+      <td style="text-align: center">14.40 minutes</td>
+      <td style="text-align: center">3.65 days</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">99.9%</td>
+      <td style="text-align: center">1.44 minutes</td>
+      <td style="text-align: center">8.77 hours</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">99.99%</td>
+      <td style="text-align: center">8.64 seconds</td>
+      <td style="text-align: center">52.60 minutes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">99.999%</td>
+      <td style="text-align: center">864.00 milliseconds</td>
+      <td style="text-align: center">5.26 minutes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">99.9999%</td>
+      <td style="text-align: center">86.40 milliseconds</td>
+      <td style="text-align: center">31.56 seconds</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Anything above 5 nines is considered highly available.</p>
+
+<h2 id="example-estimate-twitter-qps-and-storage-requirements">Example: Estimate Twitter QPS and storage requirements</h2>
+<p>Following numbers are just to showcase how back-of-the-envelope-estimation works, these are not real numbers from twitter.</p>
+
+<h3 id="assumptions">Assumptions</h3>
+<ul>
+  <li>300 million monthly active users</li>
+  <li>50% of users use twitter daily</li>
+  <li>Users post 2 tweets per day on average</li>
+  <li>10% of tweets contain media</li>
+  <li>Data is stored for 5 years</li>
+</ul>
+
+<h3 id="estimations">Estimations</h3>
+<p><strong>Query per second(QPS)</strong> estimate:</p>
+<ul>
+  <li>Daily active users(DAU) = 300 million * 50% = 150 million</li>
+  <li>Tweets QPS = 150 million * 2 tweets / 24 hour / 3600 seconds = ~3500</li>
+  <li>Peek QPS = 2 * QPS = ~7000</li>
+</ul>
+
+<p>We will only estimate media storage here.</p>
+<ul>
+  <li>Average tweet size:
+    <ul>
+      <li>tweet_id \(\to\) 64 bytes</li>
+      <li>text \(\to\) 140 bytes</li>
+      <li>media \(\to\) 1 MB</li>
+    </ul>
+  </li>
+  <li>Media storage: 150 million * 2 * 10% * 1 MB = 30 TB per day</li>
+  <li>5-year media storage: 3 TB * 365 * 5 = ~55 PB</li>
+</ul>
+
+<h2 id="tips">Tips</h2>
+<p>Back-of-the-envelope estiimations don’t need to be extremely accurate, they are just meant to give approximate idea of scale. Few tips are as follows-</p>
+<ul>
+  <li>Rounding and Approximation wherever necessary for speed calculation, precision isn’t expected at design stage</li>
+  <li>Write down assumptions to be referenced later</li>
+  <li>Label units to remove ambiguity from numbers and not confuse yourself</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>This note gives basic idea of how back-of-the-envelope calculations work. You should practice these calculations on all designs you visit. More practice will help you get rough numbers in mind and select or discard ideas when brainstorming new system design.</p>
+
+  </div><a class="u-url" href="/2022/06/19/system-design-estimation.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shubham&#39;s Digital Garden🪴</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shubham</li><li><a class="u-email" href="mailto:shubham.null@gmail.com">shubham.null@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/prophet1906"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">prophet1906</span></a></li><li><a href="https://www.twitter.com/shubham_null"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shubham_null</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Shubham&#39;s Digital Garden.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

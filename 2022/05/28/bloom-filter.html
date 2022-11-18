@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloom Filter | Shubham’s Digital Garden🪴</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Bloom Filter" />
+<meta name="author" content="Shubham" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You heard about some cool website from your friends. You visit the website and try creating new account, but get a message, Username is already taken. You add some random numbers at end, but you still get same error message. This process is frustating, until you find a username that works." />
+<meta property="og:description" content="You heard about some cool website from your friends. You visit the website and try creating new account, but get a message, Username is already taken. You add some random numbers at end, but you still get same error message. This process is frustating, until you find a username that works." />
+<link rel="canonical" href="https://reflection.cf/2022/05/28/bloom-filter.html" />
+<meta property="og:url" content="https://reflection.cf/2022/05/28/bloom-filter.html" />
+<meta property="og:site_name" content="Shubham’s Digital Garden🪴" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-28T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloom Filter" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Shubham"},"dateModified":"2022-05-28T00:00:00+00:00","datePublished":"2022-05-28T00:00:00+00:00","description":"You heard about some cool website from your friends. You visit the website and try creating new account, but get a message, Username is already taken. You add some random numbers at end, but you still get same error message. This process is frustating, until you find a username that works.","headline":"Bloom Filter","mainEntityOfPage":{"@type":"WebPage","@id":"https://reflection.cf/2022/05/28/bloom-filter.html"},"url":"https://reflection.cf/2022/05/28/bloom-filter.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://reflection.cf/feed.xml" title="Shubham's Digital Garden🪴" /><!-- for mathjax support -->
+  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shubham&#39;s Digital Garden🪴</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/tags/">tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Bloom Filter</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-05-28T00:00:00+00:00" itemprop="datePublished">May 28, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>You heard about some cool website from your friends. You visit the website and try creating new account, but get a message, <code class="language-plaintext highlighter-rouge">Username is already taken</code>. You add some random numbers at end, but you still get same error message. This process is frustating, until you find a username that works.</p>
+
+<p>Ever wondered, how they check availability of usernames so fast? when they have millions of registered users.</p>
+
+<p>There are multiple ways to solve this problem -</p>
+<ol>
+  <li><strong>Linear search</strong> - go through database and compare every username with the username you entered to find if it exists. This will probably take years before you can create a new account.</li>
+</ol>
+
+<p><img src="/assets/images/bloom_filter/waiting.jpg" alt="Waiting" /></p>
+
+<ol>
+  <li><strong>Binary Search</strong> - store usernames alphabetically and try finding the entered username using binary search. This is better than previous approach, but still requires many steps when you have millions of users.</li>
+</ol>
+
+<p><img src="/assets/images/bloom_filter/binary_search.png" alt="Binary Search" /></p>
+
+<ol>
+  <li><strong>Trie</strong> - store usernames in a trie and try finding the entered username. This have way better performance than previous 2 approaches, but it requires more memory to store millions of users. Also the overhead of maintaining trie is huge for so many users.</li>
+</ol>
+
+<p><img src="/assets/images/bloom_filter/trie.png" alt="Trie" /></p>
+
+<p><strong>Bloom filter</strong> can solve this problem. You need to understand hashing to learn how bloom filter works. A hash function maps some input to a fixed length unique identifier output, this output can be used for identifying input.</p>
+
+<h2 id="what-is-it">What is it?</h2>
+<p>A Bloom filter is a space-efficient probabilistic data structure that is used to test if an element is a member of a set. The tradeoff for efficiency is the probabilistic nature of bloom filter, which means there might be some false positives. False positive means, bloom filter may say that a username is already used, even when it’s not.</p>
+
+<h2 id="properties">Properties</h2>
+<ul>
+  <li>Bloom filter with fixed size can represent a set with very large number of elements</li>
+  <li>Adding element never fails, but false positives increase as more elements are added</li>
+  <li>Never generates false negatives</li>
+  <li>Deleting elements from filter isn’t possible</li>
+</ul>
+
+<h2 id="how-it-works">How it works?</h2>
+<p>An empty bloom filter is a <strong>bit array</strong> of <strong>n</strong>  bits, all set to zero. We also need <strong>k</strong> hash functions to calculate hash function for a given input. For adding an element to bloom filter we set <strong>k</strong> indices calculated using hash function h<sub>1</sub>(x), h<sub>2</sub>(x), …, h<sub>k</sub>(x) to 1.</p>
+
+<p>Example - If we have a bloom filter with 10 bits and 3 hash functions h<sub>1</sub>, h<sub>2</sub>, h<sub>3</sub>. Initial value for all bits in bloom filter will be 0.</p>
+
+<p><img src="/assets/images/bloom_filter/empty_bloom_filter.excalidraw.png" alt="Empty Bloom Filter" /></p>
+
+<p>We then calculate hash for the word to be added and set the indices returned by hash function to 1.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// word to be added - shubham</span>
+<span class="n">h1</span><span class="o">(</span><span class="s">"shubham"</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">h2</span><span class="o">(</span><span class="s">"shubham"</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">h3</span><span class="o">(</span><span class="s">"shubham"</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">9</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/bloom_filter/bf1.excalidraw.png" alt="Bloom Filter 1" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// word to be added - alex</span>
+<span class="n">h1</span><span class="o">(</span><span class="s">"alex"</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">h2</span><span class="o">(</span><span class="s">"alex"</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">h3</span><span class="o">(</span><span class="s">"alex"</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">10</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/bloom_filter/bf2.excalidraw.png" alt="Bloom Filter 2" /></p>
+
+<p>To check if a element is present in bloom filter, we do the same process in reverse. You get back indexes using hash functions &amp; check indexes. If all indexes are set to 1 the word is <strong>probably present</strong>, but if any of these indexes is 0, the word is <strong>definitely not present</strong>.</p>
+
+<h2 id="false-positives">False Positives</h2>
+
+<p>There is a possiblity of 2 words returning same values from hash function. This means we can get false positives where a word wasn’t added to bloom filter.</p>
+
+<p>Assume a word that was not added to bloom filter, but returns hash values which are already set.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// word to be checked - bob</span>
+<span class="n">h1</span><span class="o">(</span><span class="s">"bob"</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">h2</span><span class="o">(</span><span class="s">"bob"</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">h3</span><span class="o">(</span><span class="s">"bob"</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">9</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/bloom_filter/bf3.excalidraw.png" alt="Bloom Filter 3" /></p>
+
+<p>Here we never added <strong>bob</strong> to the bloom filter, but it is still present in filter. This means we can be <strong>100%</strong> sure if something isn’t available in filter, but not the other way around.</p>
+
+<p>We can control the probability of getting false positives by controlling the size of bloom filter. More bits means fewer false positives. We can also increase the number of hash functions to check more bits and reduce false positives. This also increases latency to add and check elements in bloom filter.</p>
+
+<p>Let <strong>n</strong> be the size of bit array, <strong>k</strong> be the number of hash functions and <strong>n</strong> be the number of elements to be inserted in the filter, then probability of false positives <strong>p</strong> can be calculated as follows:</p>
+
+\[\mathrm{P} = \left( 1-\left[ 1-\frac{1}{n} \right]^{km} \right)^{k}\]
+
+<p>If <strong>m</strong> is max number elements expected to be handled by bloom filter and desired false positive probability is <strong>p</strong>, the the size of bit array <strong>n</strong> can be calcuated as follows:</p>
+
+\[\mathrm{n} = -\frac{mln{P}}{(ln{2})^{2}}\]
+
+<p>If <strong>n</strong> is size of bit array and <strong>m</strong> is number of elements to be inserted then optimum number if hash functions <strong>k</strong> can be calculated as follows:</p>
+
+\[\mathrm{k} = \frac{n}{m}ln{2}\]
+
+<p>Bloom filter are very space efficient, as data items are not stored. Using bit array allows hash collision, without hash collision, it would not be compact.</p>
+
+<h2 id="supported-operations">Supported Operations</h2>
+<ul>
+  <li><strong>insert(x)</strong> - insert an element to bloom filter</li>
+  <li><strong>lookup(x)</strong> - check whether an element is already present in bloom filter with a probability of false positive</li>
+</ul>
+
+<p><span style="color: red;">
+Note: Elements cannot be deleted from bloom filter.
+</span></p>
+
+<h2 id="choosing-hash-function">Choosing Hash Function</h2>
+<p>All hash functions used in bloom filter should be independent from each other and uniformly distributed. These hash functions should be fast. Getting hash is most frequently used operation in bloom filters. Cryptographic hash functions provide stability but are expensive to calculate. Increasing hash functions slows bloom filter. Non-cryptographic hash functions do not provide guarantee but do provide major performance improvements.</p>
+
+<p>Fast simple non cryptographic hashes which are independent of each other include <a href="https://en.wikipedia.org/wiki/MurmurHash">MurmurHash</a>, <a href="https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function">Fowler–Noll–Vo hash function</a>, <a href="https://en.wikipedia.org/wiki/Jenkins_hash_function">Jenkins hash function</a>.</p>
+
+<h2 id="applications">Applications</h2>
+<p>Bloom filters should be used when:</p>
+<ul>
+  <li>Data to be searched is large</li>
+  <li>Memory available on the system is limited/low</li>
+</ul>
+
+<p>Some real world usage:</p>
+<ul>
+  <li>Detect weak passwords</li>
+  <li>Google Chrome Safe Browsing(URL bloom filter)</li>
+  <li>Antivirus(Content bloom filter)</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>This note covers basics of bloom filter and when to use them. I recommend reading more about non-cryptographic hash functions and how to use them.</p>
+
+  </div><a class="u-url" href="/2022/05/28/bloom-filter.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shubham&#39;s Digital Garden🪴</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shubham</li><li><a class="u-email" href="mailto:shubham.null@gmail.com">shubham.null@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/prophet1906"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">prophet1906</span></a></li><li><a href="https://www.twitter.com/shubham_null"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shubham_null</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Shubham&#39;s Digital Garden.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

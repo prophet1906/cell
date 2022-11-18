@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Complexity Analysis | Shubham’s Digital Garden🪴</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Complexity Analysis" />
+<meta name="author" content="Shubham" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="It is very important to find complexity of algorithms used during software development. A well-written algorithm is not only time-efficient but also space-efficient." />
+<meta property="og:description" content="It is very important to find complexity of algorithms used during software development. A well-written algorithm is not only time-efficient but also space-efficient." />
+<link rel="canonical" href="https://reflection.cf/2022/09/08/complexity-analysis.html" />
+<meta property="og:url" content="https://reflection.cf/2022/09/08/complexity-analysis.html" />
+<meta property="og:site_name" content="Shubham’s Digital Garden🪴" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-08T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Complexity Analysis" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Shubham"},"dateModified":"2022-09-08T00:00:00+00:00","datePublished":"2022-09-08T00:00:00+00:00","description":"It is very important to find complexity of algorithms used during software development. A well-written algorithm is not only time-efficient but also space-efficient.","headline":"Complexity Analysis","mainEntityOfPage":{"@type":"WebPage","@id":"https://reflection.cf/2022/09/08/complexity-analysis.html"},"url":"https://reflection.cf/2022/09/08/complexity-analysis.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://reflection.cf/feed.xml" title="Shubham's Digital Garden🪴" /><!-- for mathjax support -->
+  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Shubham&#39;s Digital Garden🪴</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/tags/">tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Complexity Analysis</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-09-08T00:00:00+00:00" itemprop="datePublished">Sep 8, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>It is very important to find complexity of algorithms used during software development. A well-written algorithm is not only time-efficient but also space-efficient.</p>
+
+<p>The complexity of algorithms is measured using asymptotic notations. We can determine if an algorithm performs better than another using these notations.</p>
+
+<p>A good software developer should have the ability to calculate the complexity of any algorithm.</p>
+
+<h2 id="introduction-to-asymptotic-analysis-and-big-o">Introduction to Asymptotic Analysis and Big O</h2>
+<p>The time complexity of an algorithm can be expressed as a polynomial. We can compare 2 algorithms by comparing the respective polynomials.</p>
+
+<h2 id="asymptotic-analysis">Asymptotic analysis</h2>
+<p>The asymptotic notation compares 2 functions say, <em>f(n)</em> and <em>g(n)</em> for very large values of <em>n</em>. This fits in nicely with our need for comparing algorithms for very large input sizes.</p>
+
+<h2 id="big-o-notation">Big O notation</h2>
+<p>One of the asymptotic notations is the Big O notation. A function \(f(n)\) is considered \(O(g(n))\) if there exists some positive real constant <strong><em>c</em></strong> and an integer \(n_0 \gt 0\), such that the following inequality holds for all \(n \geq n_0\):
+\(f(n) \leq cg(n)\)</p>
+
+<p>The following graph shows a plot of a function \(f(n)\) and \(cg(n)\) that demonstrates this inequality.</p>
+
+<p><img src="/assets/images/complexity-analysis/big-o-graph.png" alt="Big O Graph" /></p>
+
+<p>Note that the above inequality does not have to hold true for all values of n. For \(n \lt n_0\), \(f(n)\) is allowed to exceed \(cg(n)\), but for all values of n beyond some values \(n_0\), \(f(n)\) is not allowed to exceed \(cg(n)\).</p>
+
+<p>It tells us that for very large values of \(n\), \(f(n)\) will be at most within a constant factor of \(g(n)\). In other words, \(f(n)\) will grow no faster than a constant multiple of \(g(n)\). The rate of growth of \(f(n)\) is within constant factors of that of \(g(n)\).</p>
+
+<blockquote>
+  <p>People tend to write \(f(n) = O(g(n))\), which isn’t technically accurate. A whole lot of functions can satisfy the \(O(g(n))\) conditions. Therefore, \(O(g(n))\) is a set of functions, and it is okay to say that \(f(n)\) belongs to \(O(g(n))\).</p>
+</blockquote>
+
+<h2 id="example">Example</h2>
+<p>Let’s consider an algorithm whose running time is given by \(f(n) = 3n^3 + 4n + 2\). Let us try to verify that this algorithm’s time complexity is in \(O(n^3)\). To do this, we need to find a positive constant \(c\) and an integer \(n_0 \ge 0\), such that for all \(n \ge n_0\):</p>
+
+\[3n^3 + 4n + 2 \le cn^3\]
+
+<p>The above inequality would still be true if we re-wrote it while replacing \(cn^3\) with \(3n^3 + 4n^3 + 2n^3\). We have replaced the variable part in all terms with \(n^3\), the variable-part of the highest order term. This gives us:</p>
+
+\[3n^3 + 4n + 2 \le 3n^3 + 4n^3 + 2n^3 = 9n^3\]
+
+<p>This does not violate the inequality because each term on the right-hand side is greater than the corresponding term on the left-hand side. Now, comparing it with the definition of Big O, we can pick c = 9.</p>
+
+<p>That leaves \(n_0\). For what values of n is the inequality \(9n^3 \le cn^3\) satisfied? All of them, actually!
+So, we can pick \(n_0 = 1\).</p>
+
+<p>The above solution(\(c = 9, n_0 = 1\)) is not unique. We could have picked any value for \(c\) that exceeds the coefficient of the higher power of \(n\) in \(f(n)\).</p>
+
+<p>It is not possible to find a constant \(c\) and \(n_0\) to show that \(f(n) = 3n^3 + 4n + 2\) is \(O(n^2)\) or \(O(n)\). It is possible to show that \(f(n)\) is \(O(n^4)\) or \(O(n^5)\) or any higher power of \(n\).</p>
+
+<p>It is not really useful to pick higher power.</p>
+
+<p>We are generally interested in the tightest possible bound when it comes to the asymptotic notation.</p>
+
+<h2 id="simplified-asymptotic-analysis">Simplified asymptotic analysis</h2>
+<p>We can arrive at the Big O notation for the algorithm simply by:</p>
+<ul>
+  <li>Dropping the multiplicative constants with all terms</li>
+  <li>Dropping all but the highest order term</li>
+</ul>
+
+<p>Therefore, \(n^2 + 2n + 1\) is \(O(n^2)\) while \(n^5 + 4n^3 + 2n + 43\) is \(O(n^5)\).</p>
+
+<h2 id="comparison-of-some-common-functions">Comparison of some common functions</h2>
+<p><img src="/assets/images/complexity-analysis/asymptotic-notation-comparison.png" alt="Asymptotic Notation Comparison" /></p>
+
+\[c \lt log(n) \lt log^2n \lt \sqrt{n} \lt n \lt nlog(n) \lt n^2 \lt n^3 \lt n^4 \lt 2^n \lt e^n \lt n!\]
+
+<h2 id="useful-formulae">Useful Formulae</h2>
+<p>\(\sum_{i=1}^n c = c + c + c + ... + c = cn\)
+\(\sum_{i=1}^ni = 1 + 2 + 3 + ... + n = \frac{n(n+1)}{2}\)
+\(\sum_{i=1}^ni^2 = 1 + 4 + 9 + ... + n^2 = \frac{n(n+1)(2n+1)}{6}\)
+\(\sum_{i=0}^nr^i = r^0 + r^1 + r^2 + ... + r^n = \frac{r^{n+1}-1}{r-1}\)</p>
+
+<h2 id="general-tips">General Tips</h2>
+<ol>
+  <li>Every time a list or array gets iterated over \(c\) x \(length\) times, it is most likely in \(O(n)\) time.</li>
+  <li>When you see a problem where the number of elements in the problem space gets halved each time, it will most probably be in \(O(log(n))\) runtime.</li>
+  <li>Whenever you have a single nested loop, the problem is most likely in quadratic time.</li>
+</ol>
+
+<h2 id="common-complexity-scenarios">Common Complexity Scenarios</h2>
+
+<h3 id="simple-for-loop-with-an-increment-of-size-1">Simple for-loop with an increment of size 1</h3>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// statement(s) that take constant time</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Running time complexity</strong> = \(T(n)\) = \((2n + 2) + cn\) = \((2 + c)n + 2 \in O(n)\)
+Dropping the leading constants =&gt; \((n+2)\)
+Dropping lower order terms =&gt; \(O(n)\)</p>
+
+<p><strong>Explanation</strong>
+Loop runs for \(0\) till \(n-1\)
+<code class="language-plaintext highlighter-rouge">x++</code> runs \(n\) times
+<code class="language-plaintext highlighter-rouge">x &lt; n</code> runs \(n + 1\) times
+Initialization <code class="language-plaintext highlighter-rouge">x = 0</code> runs once
+ Running complexity = \(n + n + 1 + 1 = 2n + 2\)
+ Constant time statement run \(n\) times inside loop =&gt; <code class="language-plaintext highlighter-rouge">cn</code>
+ Total running time complexity = \((2n+2) + cn \in O(n)\).</p>
+
+<h3 id="for-loop-with-increments-of-size-k">For-loop with increments of size k</h3>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">+=</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// statement (s) that take constant time</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Running time complexity</strong> = \(2 + n\frac{2 + c}{k} \in O(n)\)</p>
+
+<p><strong>Explanation</strong>
+<code class="language-plaintext highlighter-rouge">x = 0</code> runs once
+<code class="language-plaintext highlighter-rouge">x</code> gets incremented by <code class="language-plaintext highlighter-rouge">k</code> untile it reaches <code class="language-plaintext highlighter-rouge">n</code>
+=&gt; [0, k, 2k, …, (mk) &lt; n]  =&gt; \(floor(\frac{n}{k})\) times
+Comparision also takes same time +1 iteration</p>
+
+<p>Total loop = \(1 + 1 + \frac{n}{k} + \frac{n}{k} = 2 + \frac{2n}{k}\) times
+Constant time statement takes \(c \times \frac{n}{k}\) time
+Total running time complexity = \(2 + \frac{2n}{k} + \frac{cn}{k} = 2 + n(\frac{2+c}{k}) \in O(n)\)</p>
+
+<h3 id="simple-nested-for-loop">Simple nested for-loop</h3>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// statement(s) that take(s) constant time</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Running Time Complexity</strong> =  \(nm(2 + c) + 2 + 4n \in O(nm)\)</p>
+
+<p><strong>Explanation</strong>
+Inner loop is a simple for loop that takes \((2m + 2) + cm\) time and the outer loop runs it \(n\) times.
+So, it takes \(n((2m + 2) + cm)\) time. Additionally, the initialization, increment and test for the outer loop take \(2n + 2\) time so in total, the running time is
+\(n((2m + 2) + cm) + 2n + 2 = 2nm + 4n + cnm + 2 = nm(2 + c) + 4n + 2\), which is \(O(nm)\).</p>
+
+<h3 id="nested-for-loop-with-dependent-variables">Nested for-loop with dependent variables</h3>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// statement(s) that take(s) constant time</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Running Time Complexity</strong> = \(O(n^2)\)</p>
+
+<p><strong>Explanation</strong>
+Outer loop runs \(n\) times.
+For each outer loop run, inner loop runs \(i\) times.
+Inner loop will run for \(i = 0,1,2...(n-1)\) times for constant time statement \(c\).
+\(c + 2c + 3c + ... + (n-1)c\) times = \(c(\sum_{i=1}^{n-1}i)\) = \(c\frac{(n - 1)((n - 1) + 1)}{2}\) = \(\frac{cn(n - 1)}{2}\).
+The initialization of <code class="language-plaintext highlighter-rouge">j</code> in the inner loop runs once in each iteration of the outer loop.
+So, it incurs total running time of \(1 + 2 + ... + n = \frac{n(n + 1)}{2}\).
+In each iteration the <code class="language-plaintext highlighter-rouge">j++</code> statement runs one less than the <code class="language-plaintext highlighter-rouge">j &lt; i</code> statement, this account to \(1 + 2 + ... + (n - 1) = \frac{n(n - 1)}{2}\).</p>
+
+<p>So in total, the inner loop has a running time of \(\frac{cn(n - 1)}{2} + \frac{n(n + 1)}{2} + \frac{n(n - 1)}{2} + n\).</p>
+
+<p>The outer loop initialization, test and increment operations account for a running time of \(2n + 2\). That means the entire script has a running time of \(2n + 2 + \frac{cn(n - 1)}{2} + n + \frac{n(n + 1)}{2} + \frac{n(n - 1)}{2}\) which is \(O(n^2)\)</p>
+
+<h3 id="nested-for-loop-with-index-modification">Nested for-loop with index modification</h3>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">i</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// statement(s) that take(s) constant time</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Running Time Complexity</strong> = \(O(n)\)</p>
+
+<p><strong>Explanation</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Outer Loop</th>
+      <th style="text-align: center">Inner Loop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">i = 0</td>
+      <td style="text-align: center">i = 0 * 2 = 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">i = 1</td>
+      <td style="text-align: center">i = 1 * 2 = 2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">i = 3</td>
+      <td style="text-align: center">i = 3 * 2 = 6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">…</td>
+      <td style="text-align: center">…</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">i = (n - 1)</td>
+      <td style="text-align: center">i = (n - 1) * 2 = 2(n - 1)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If <code class="language-plaintext highlighter-rouge">i</code> keeps doubling, it will get from 1 to \(n-1\) in roughly \(log_2(n-1)\) steps.
+With this simplification, the outer loop index goes approximately 1,2,4,…, \(2^{log_2(n -1 )}\).
+Total number of iterations for inner loop is:
+\(2^0 + 2^1 + 2^2 + ... + 2^{log_2(n - 1)} = 2^{log_2(n - 1) + 1} - 1 = 2^{log_2(n - 1)}2 - 1 = 2(n - 1) - 1 = 2n - 3\).
+Total running time of the inner for loop is \(2(2n - 3) + 2 + c(2n - 3)\) where \(c\) is the running time of the statements in the body of the inner loop. This simplifies to \(2n(2 + c) - 3c - 4\). The contribution from the initialization, test and increment operations of the outer for loop is \(2log_2(n - 1) + 2\). So, the total runtime is \(2n(2 + c) - 3c - 4 + 2log_2(n - 1) + 2\). The term linear in \(n\) dominates the others, and the time complexity is \(O(n)\).</p>
+
+<h3 id="loops-with-logn-time-complexity">Loops with log(n) time complexity</h3>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span> <span class="o">=</span> <span class="c1">// constant</span>
+<span class="n">n</span> <span class="o">=</span> <span class="c1">// constant</span>
+<span class="n">k</span> <span class="o">=</span> <span class="c1">// constant</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">i</span> <span class="o">*=</span> <span class="n">k</span><span class="p">;</span>
+	<span class="c1">// statement(s) that take(s) constant time</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Running Time Complexity</strong> = \(\log_k(n) = O(log_k(n))\).</p>
+
+<p><strong>Explanation</strong>
+A loop statement that multiplies/divides the loop variable by a constant such as the above takes \(log_k(n)\) time because the loop runs that many times. Let’s consider an example where n = 16, and k = 2:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">i</th>
+      <th style="text-align: center">Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">16</td>
+      <td style="text-align: center">5</td>
+    </tr>
+  </tbody>
+</table>
+
+\[log_k(n) = log_2(16) = 4\]
+
+  </div><a class="u-url" href="/2022/09/08/complexity-analysis.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Shubham&#39;s Digital Garden🪴</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Shubham</li><li><a class="u-email" href="mailto:shubham.null@gmail.com">shubham.null@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/prophet1906"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">prophet1906</span></a></li><li><a href="https://www.twitter.com/shubham_null"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">shubham_null</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Shubham&#39;s Digital Garden.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
